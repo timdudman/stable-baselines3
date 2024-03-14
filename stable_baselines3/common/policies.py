@@ -383,6 +383,8 @@ class BasePolicy(BaseModel, ABC):
             assert isinstance(actions, np.ndarray)
             actions = actions.squeeze(axis=0)
 
+        # TODO (TERLA) Call function to convert action here
+
         return actions, state  # type: ignore[return-value]
 
     def scale_action(self, action: np.ndarray) -> np.ndarray:
@@ -481,6 +483,8 @@ class ActorCriticPolicy(BasePolicy):
             squash_output=squash_output,
             normalize_images=normalize_images,
         )
+
+        # TODO (TERLA) Call function to initialise HGE here
 
         if isinstance(net_arch, list) and len(net_arch) > 0 and isinstance(net_arch[0], dict):
             warnings.warn(
@@ -641,6 +645,11 @@ class ActorCriticPolicy(BasePolicy):
         :param deterministic: Whether to sample or use deterministic actions
         :return: action, value and log probability of the action
         """
+
+		# Call function to convert observation here
+
+        # TODO (TERLA) Call function to forward HGE here
+
         # Preprocess the observation if needed
         features = self.extract_features(obs)
         if self.share_features_extractor:
